@@ -1,9 +1,11 @@
 import React from 'react';
-
-export default  function App() {
+import Header from './Components/Header';
+import Feed from './Components/Feed';
+export default function App() {
   return (
-    <div>
-
+    <div className='App'>
+      <Header />
+      <Feed />
     </div>
   );
 }
