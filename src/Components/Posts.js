@@ -30,17 +30,18 @@ export default class Posts extends Component {
     onError = (err) => {
         this.setState({
             error: true
-        })
+        });
+        console.log(err);
+        
     }
 
     renderItems(arr) {
-        return arr.map(item => {
+            return arr.map(item => {
             const { name, altname, src, photo, alt, descr, id } = item;
 
             return (
-                <li>
+                <li key={id}>
                     <Post name={name}
-                        key={id}
                         altname={altname}
                         src={src} photo={photo}
                         alt={alt}

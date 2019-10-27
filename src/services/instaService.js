@@ -5,7 +5,6 @@ export default class InstaService {
 
     getResource = async (url) => {
         const res = await fetch(`${this._apiBase}${url}`);
-
         if (!res.ok) {
             throw new Error(`Couldn't fetch ${url}; received ${res.status}`);
         }
@@ -13,7 +12,9 @@ export default class InstaService {
     }
 
     gerAllPosts = async () => {
-        const res = await this.getResource('/posts/');
+        const res = await this.getResource('/posts');
+        console.log('response=> ',res);
+        
         return res;
     }
 }
