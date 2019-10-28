@@ -36,8 +36,6 @@ export default class Posts extends Component {
             loading: false
 
         });
-        console.log(err);
-
     }
 
     renderItems(arr) {
