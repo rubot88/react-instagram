@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import InstaService from '../services/InstaService';
 import Post from './Post';
 import ErrorMessage from './Error';
+import Loader from 'react-loader-spinner'
 
 export default class Posts extends Component {
     InstaService = new InstaService();
     state = {
         posts: [],
-        error: false
+        error: false,
+        loading: true
     }
 
     componentDidMount() {
@@ -23,20 +25,23 @@ export default class Posts extends Component {
     onPostsLoaded = (posts) => {
         this.setState({
             posts,
-            error: false
+            error: false,
+            loading: false
         });
     }
 
     onError = (err) => {
         this.setState({
-            error: true
+            error: true,
+            loading: false
+
         });
         console.log(err);
-        
+
     }
 
     renderItems(arr) {
-            return arr.map(item => {
+        return arr.map(item => {
             const { name, altname, src, photo, alt, descr, id } = item;
 
             return (
@@ -51,13 +56,25 @@ export default class Posts extends Component {
         });
     }
     render() {
-        const { error, posts } = this.state;
+        const { error, posts, loading } = this.state;
+        if (loading) {
+            return (
+                <div className="loader">
+                    <Loader
+                        type="TailSpin"
+                        color="#00BFFF"
+                        height={80}
+                        width={80} />
+                </div>
+            )
+        }
         if (error) {
             return <ErrorMessage />
         }
         const items = this.renderItems(posts);
         return (
             <ul className="left">
+
                 {items}
             </ul>
         );
