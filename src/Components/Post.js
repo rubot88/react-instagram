@@ -14,7 +14,7 @@ export default class Post extends Component {
                 <div className="post__name">
                     {name}
                 </div>
-                <div className="posts_descr">
+                <div className="post__descr">
                     {descr}
                 </div>
             </div>
